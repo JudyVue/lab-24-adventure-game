@@ -1,0 +1,10 @@
+<section class="game-history">
+  <ol>
+    <li ng-repeat="turn in gameHistoryCtrl.history">
+      <h2 ng-show="gameHistoryCtrl.history.desc=gameHistoryCtrl.loserMessage">GAME OVER</h2>
+      <h5 class="italic-font"> turn {{turn.turn}}: {{turn.location}}</h5>
+      <h5>{{turn.desc}}</h5>
+      <p><span>Health Points: </span>{{turn.hp}}</p>
+    </li>
+  </ol>
+</section>
