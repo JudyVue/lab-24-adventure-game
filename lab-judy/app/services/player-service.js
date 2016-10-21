@@ -31,7 +31,7 @@ function playerService($q, $log, mapService){
 
   service.movePlayer = function(direction){
     return new $q((resolve, reject) => {
-      turn++;
+      ++turn;
 
       let currentLocation = player.location;
       let newLocation = mapService.mapData[currentLocation][direction];
@@ -42,7 +42,7 @@ function playerService($q, $log, mapService){
           turn,
           desc: 'Nope, need to brush up on your geography, bruh',
           location: player.location,
-          hp: player.hp--,
+          hp: --player.hp,
         });
         console.log('history: ', history);
         return reject('no room in that direction');
