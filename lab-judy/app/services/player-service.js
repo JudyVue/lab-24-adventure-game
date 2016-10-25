@@ -10,7 +10,7 @@ function playerService($q, $log, mapService){
 
   let service = {};
 
-  let turn = 1;
+  let turn = 0;
 
   let player = service.player = {
     name: 'Judy',
@@ -36,8 +36,20 @@ function playerService($q, $log, mapService){
       let currentLocation = player.location;
       let newLocation = mapService.mapData[currentLocation][direction];
 
+
+      if(history[0].hp === 0){
+        history.unshift({
+          turn,
+          desc: service.loserMessage,
+          location: player.location,
+          hp: 0,
+        });
+        return;
+      }
+
       //if player did NOT answer correctly
       if(!newLocation){
+
         history.unshift({
           turn,
           desc: 'Nope, need to brush up on your geography, bruh',
@@ -50,16 +62,13 @@ function playerService($q, $log, mapService){
       //else if player anwswered correctly
       history.unshift({
         turn,
-        location: player.location,
+        location: newLocation,
         desc: mapService.mapData[newLocation].desc,
         hp: player.hp,
       });
       console.log('history: ', history);
       player.location = newLocation;
 
-      if(history.player.hp === 0){
-        history.desc = service.loserMessage;
-      }
       return resolve(player.location, player.hp);
     });
   };

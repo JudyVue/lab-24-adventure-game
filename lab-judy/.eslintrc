@@ -15,6 +15,7 @@
   },
   "globals": {
     "angular": true,
+    "__API_URL__": false,
   },
   "ecmaFeatures": {
     "modules": true,

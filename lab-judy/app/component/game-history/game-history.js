@@ -16,5 +16,5 @@ ngAdventure.controller('GameHistoryController', ['$log', 'playerService', GameHi
 function GameHistoryController($log, playerService){
   $log.debug('init gameHistoryCtrl');
   this.history = playerService.history;
-  this.hp = playerService.player.hp;
+  this.loserMessage = playerService.loserMessage;
 }
